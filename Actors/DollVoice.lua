@@ -1,6 +1,6 @@
 function Create(self)
 	self.WasSoundPlayed = false
-	self.SelectSound = CreateSoundContainer("AKM Select", "GFLRu.rte");
+	self.SelectSound = CreateSoundContainer(self.PresetName .. " Select", "GFLRu.rte");
 end
 
 function Update(self)
@@ -8,8 +8,7 @@ function Update(self)
 	if self:IsPlayerControlled() and self.WasSoundPlayed == false and self.SelectSound:IsBeingPlayed() == false then
 		self.SelectSound:Play(self.Pos)
 		self.WasSoundPlayed = true
-	end
-	if self:IsPlayerControlled() == false then
+	elseif self:IsPlayerControlled() == false and self.SelectSound:IsBeingPlayed() == false then
 		self.WasSoundPlayed = false
 	end
 end

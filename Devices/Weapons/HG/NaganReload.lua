@@ -14,7 +14,10 @@ function Create(self)
 	end
 end
 
-function Update(self)
+function ThreadedUpdate(self)
+	if self.FiredFrame then
+		self.ammoCounter = self.ammoCounter - 1;
+	end
 	if self.Magazine ~= nil then
 		if self.loadedShell == false then
 			self.ammoCounter = self.Magazine.RoundCount
@@ -38,7 +41,7 @@ function Update(self)
 			ToActor(actor):GetController():SetState(Controller.WEAPON_RELOAD, true)
 			local shell = CreateMOSParticle("Casing")
 			shell.Pos = self.Pos
-			shell.Vel = Vector(math.random() * -3 * self.negativeNum, 0)
+			shell.Vel = Vector(math.random() * -3 * self.FlipFactor, 0)
 				:RadRotate(self.RotAngle)
 				:DegRotate((math.random() * 32) - 16)
 			MovableMan:AddParticle(shell)
