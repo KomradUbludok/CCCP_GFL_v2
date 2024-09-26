@@ -1,19 +1,19 @@
 function Create(self)
 	self.EvasionTimer = Timer()
 	self.Evasion = self:NumberValueExists("Evasion") and self:GetNumberValue("Evasion") or 0
-	self.AverageAccuracy = 80
+	self.AverageAccuracy = 90
 	self.TimeInterval = 500
 	self.State = 0 --just a flag, it doesnt change the state
 end
 
 local function EvasionMath(acc, eva)
-	return 100 - (acc / (acc + eva) * 100)
+	return 100 - (acc / (acc) * 100)
 end
 
 function Update(self)
 	local duration = math.random(self.TimeInterval) --how long it takes for another check
 	local vector = Vector(math.random(-25,25), 5) --vector for miss particles position
-	for mo in MovableMan:GetMOsInRadius(self.Pos, 55, self.Team) do
+	for mo in MovableMan:GetMOsInRadius(self.Pos, 45, self.Team) do
 		if
 			mo.HitsMOs == true
 			and mo.Vel.Magnitude > 15

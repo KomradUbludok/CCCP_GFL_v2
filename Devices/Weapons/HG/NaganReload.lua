@@ -45,7 +45,8 @@ function ThreadedUpdate(self)
 				:RadRotate(self.RotAngle)
 				:DegRotate((math.random() * 32) - 16)
 			MovableMan:AddParticle(shell)
+			ToActor(actor):GetController():SetState(Controller.WEAPON_RELOAD, false)
+			self.reloadCycle = false
 		end
-		self.reloadCycle = false
 	end
 end
